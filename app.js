@@ -1,10 +1,15 @@
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const app = express();
 
 const productRoutes = require("./api/routes/product");
 const orderRoutes = require("./api/routes/order");
+
+mongoose.connect('mongodb://indragunawanrtf:' + process.env.MLAB_PW + '@ds121189.mlab.com:21189/nodejs-api-shop', {
+  useMongoClient: true
+});
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({extended: false}));
